@@ -21,7 +21,7 @@ import br.com.simplepass.loading_button_lib.R;
  */
 public class CircularProgressEditText extends EditText {
 
-    enum State {
+    public enum State {
         PROGRESS, IDLE
     }
 
