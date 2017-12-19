@@ -33,7 +33,7 @@ import br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener;
  *
  */
 public class CircularProgressButton extends Button implements AnimatedButton, CustomizableByCodeWithText {
-    enum State {
+    public enum State {
         PROGRESS, IDLE, DONE, STOPED
     }
 
