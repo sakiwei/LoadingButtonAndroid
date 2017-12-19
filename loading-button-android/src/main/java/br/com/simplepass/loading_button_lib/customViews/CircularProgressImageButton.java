@@ -196,6 +196,10 @@ public class CircularProgressImageButton extends ImageButton implements Animated
         mParams.mFinalCornerRadius = radius;
     }
 
+    public CircularProgressImageButton.State getState() {
+        return mState;
+    }
+
     /**
      * This method is called when the button and its dependencies are going to draw it selves.
      *

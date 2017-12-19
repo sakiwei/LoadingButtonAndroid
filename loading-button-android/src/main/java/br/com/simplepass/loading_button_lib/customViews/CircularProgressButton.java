@@ -13,7 +13,6 @@ import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
@@ -34,7 +33,7 @@ import br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener;
  *
  */
 public class CircularProgressButton extends Button implements AnimatedButton, CustomizableByCodeWithText {
-    private enum State {
+    enum State {
         PROGRESS, IDLE, DONE, STOPED
     }
 
@@ -206,6 +205,10 @@ public class CircularProgressButton extends Button implements AnimatedButton, Cu
     @Override
     public void setButtonText(String text) {
         mParams.mText = text;
+    }
+
+    public CircularProgressButton.State getState() {
+        return mState;
     }
 
     /**

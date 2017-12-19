@@ -20,7 +20,8 @@ import br.com.simplepass.loading_button_lib.R;
  * Created by leandro on 5/31/16.
  */
 public class CircularProgressEditText extends EditText {
-    private enum State {
+
+    enum State {
         PROGRESS, IDLE
     }
 
@@ -91,6 +92,10 @@ public class CircularProgressEditText extends EditText {
         mButtonText = this.getText().toString();
 
         setBackground(mDrawable);
+    }
+
+    public CircularProgressEditText.State getState() {
+        return mState;
     }
 
     @Override
