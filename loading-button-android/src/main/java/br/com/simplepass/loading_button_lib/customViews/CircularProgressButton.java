@@ -114,6 +114,7 @@ public class CircularProgressButton extends Button implements AnimatedButton, Cu
 
         mParams.mPaddingProgress = 0f;
 
+        mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
 
