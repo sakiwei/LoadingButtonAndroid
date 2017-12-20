@@ -235,7 +235,7 @@ public class CircularProgressButton extends Button implements AnimatedButton, Cu
 
         if (mState == State.PROGRESS && !mIsMorphingInProgress) {
             mPaint.setColor(mParams.mLoadingColor);
-            canvas.drawCircle(getWidth() * 0.5f, getHeight() * 0.5f, getHeight() * 0.5f, mPaint);
+            canvas.drawCircle(getWidth() * 0.5f, getHeight() * 0.5f, (float) Math.ceil(getHeight() * 0.5), mPaint);
             drawIndeterminateProgress(canvas);
         } else if(mState == State.DONE){
             drawDoneAnimation(canvas);
