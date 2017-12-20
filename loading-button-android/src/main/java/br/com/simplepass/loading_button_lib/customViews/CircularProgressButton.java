@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -47,6 +48,8 @@ public class CircularProgressButton extends Button implements AnimatedButton, Cu
     private AnimatorSet mAnimatorSet;
 
     private int mFillColorDone;
+    private Paint mPaint;
+
     private Bitmap mBitmapDone;
 
     private Params mParams;
@@ -111,6 +114,9 @@ public class CircularProgressButton extends Button implements AnimatedButton, Cu
 
         mParams.mPaddingProgress = 0f;
 
+        mPaint.setAntiAlias(true);
+        mPaint.setStyle(Paint.Style.FILL);
+
         if(attrs == null) {
             loadGradientDrawable(UtilsJava.getDrawable(getContext(), R.drawable.shape_default));
         } else{
@@ -131,6 +137,8 @@ public class CircularProgressButton extends Button implements AnimatedButton, Cu
                     R.styleable.CircularProgressButton_spinning_bar_width, 10);
             mParams.mSpinningBarColor = typedArray.getColor(R.styleable.CircularProgressButton_spinning_bar_color,
                     Utils.Companion.getColorWrapper(context, android.R.color.black));
+            mParams.mLoadingColor = typedArray.getColor(R.styleable.CircularProgressButton_loading_color,
+                    Utils.Companion.getColorWrapper(context, android.R.color.darker_gray));
             mParams.mPaddingProgress = typedArray.getDimension(R.styleable.CircularProgressButton_spinning_bar_padding, 0);
 
             typedArray.recycle();
@@ -207,6 +215,10 @@ public class CircularProgressButton extends Button implements AnimatedButton, Cu
         mParams.mText = text;
     }
 
+    public void setLoadingColor(int color) {
+        mParams.mLoadingColor = color;
+    }
+
     public CircularProgressButton.State getState() {
         return mState;
     }
@@ -221,6 +233,8 @@ public class CircularProgressButton extends Button implements AnimatedButton, Cu
         super.onDraw(canvas);
 
         if (mState == State.PROGRESS && !mIsMorphingInProgress) {
+            mPaint.setColor(mParams.mLoadingColor);
+            canvas.drawCircle(getWidth() * 0.5f, getHeight() * 0.5f, getHeight() * 0.5f, mPaint);
             drawIndeterminateProgress(canvas);
         } else if(mState == State.DONE){
             drawDoneAnimation(canvas);
@@ -510,6 +524,7 @@ public class CircularProgressButton extends Button implements AnimatedButton, Cu
         private float mSpinningBarWidth;
         private int mSpinningBarColor;
         private int mDoneColor;
+        private int mLoadingColor;
         private Float mPaddingProgress;
         private Integer mInitialHeight;
         private int mInitialWidth;
